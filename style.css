@@ -1,1 +1,199 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --background-color: white;
+    --background-color-primary: white;
+    --background-color-secondary: #eff2f5;
+
+    --color-white: black;
+    --color-black: white;
+    --border-color: #d4d4d4;
+    --text-secondary: #55626f;
+
+    --chart-light-bg: white;
+    --chart-dark-bg: black;
+    --chart-light-border: #d4d4d4;
+    --chart-dark-border: #333333;
+
+    --links-color: #1565C0;
+}
+
+#dark-theme {
+
+    --background-color: #050505;
+    --background-color-primary: #0e1218;
+    --background-color-secondary: #1c2025;
+
+    --color-white: white;
+    --color-black: black;
+    --border-color: #1d1f22;
+    --text-secondary: #bebebe;
+
+    --links-color: #1565C0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+div::-webkit-scrollbar {
+    height: 8px;
+}
+
+div::-webkit-scrollbar-track {
+    border-radius: 12px;
+}
+
+div::-webkit-scrollbar-thumb {
+    background-color: var(--background-color-secondary);
+    border-radius: 12px;
+    width: 20%;
+}
+
+.red {
+    color: red !important;
+}
+
+.green {
+    color: green !important;
+}
+
+p.red {
+    font-weight: 600 !important;
+}
+
+a {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+i {
+    color: var(--color-white);
+}
+
+img {
+    object-fit: cover;
+}
+
+body {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transition: all 0.5s ease;
+}
+
+.main {
+    flex: 1;
+    min-height: calc(100vh - 120px);
+}
+
+.global {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 16px 20px;
+}
+
+.global p {
+    font-size: 12px;
+    color: var(--color-white);
+}
+
+.global p span {
+    font-weight: 600;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--background-color-primary);
+    padding: 14px 20px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav .left-section,
+nav .right-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+nav .left-section .logo {
+    font-weight: 600;
+    font-size: 26px;
+}
+
+nav .left-section .nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+nav .left-section .nav-links a {
+    font-size: 13px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+nav .left-section .nav-links a.active,
+nav .left-section .nav-links a:hover {
+    background-color: var(--background-color-secondary);
+    color: var(--color-white);
+}
+
+nav .right-section {
+    width: 30%;
+    gap: 20px;
+}
+
+nav .right-section .search {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color-secondary);
+    padding: 0 10px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+nav .right-section .search input{
+    padding: 10px 6px;
+    background-color: var(--background-color-secondary);
+    color: var(--color-white);
+    font-size: 14px;
+}
+
+nav .right-section .search input::placeholder,
+nav .right-section .search  i{
+    color: var(--text-secondary);
+}
+
+nav .right-section > i{
+    padding: 8px ;
+    background-color: var(--background-color-secondary);
+    color: var(--color-white);
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+nav .right-section > i.ri-sun-line{
+    transform: rotate(0deg)
+}
+
+nav .right-section > i.ri-moon-line{
+    transform: rotate(360deg);
+}
