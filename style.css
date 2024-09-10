@@ -97,6 +97,7 @@ body {
     min-height: calc(100vh - 120px);
 }
 
+/* ---------------global--------------- */
 .global {
     display: flex;
     justify-content: center;
@@ -113,6 +114,7 @@ body {
     font-weight: 600;
 }
 
+/* ---------------NavBar--------------- */
 nav {
     display: flex;
     align-items: center;
@@ -196,4 +198,180 @@ nav .right-section > i.ri-sun-line{
 
 nav .right-section > i.ri-moon-line{
     transform: rotate(360deg);
+}
+
+/* ---------------Trending-Section--------------- */
+.trending{
+    margin: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+table tr td img{
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    margin: 6px;
+    border-radius: 12px;
+}
+
+.trending .coins-wrapper,
+.trending .nfts-wrapper{
+    width: 49%;
+}
+
+.trending h3{
+    color: var(--color-white);
+    font-weight: 500;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.trending .coins-wrapper .container,
+.trending .nfts-wrapper .container{
+    background-color: var(--background-color-primary);
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.trending table,
+.tab-container .tab-content table{
+    width: 100%;
+    border-spacing: 0px 20px;
+}
+
+.trending table th,
+.tab-container .tab-content table th{
+    color: var(--color-white);
+    font-weight: 500;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.trending thead tr:hover{
+    background-color: transparent !important;
+    cursor: unset !important;
+}
+
+.trending .coins-wrapper table tr,
+.tab-container .tab-content #asset-list table tr{
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.trending table tr td{
+    padding: 5px;
+}
+
+.trending table tr td,
+.tab-container .tab-content table tr td{
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+table tr td:first-child{
+    border-radius: 12px 0 0 12px;
+}
+
+table tr td:last-child{
+    border-radius: 0 12px 12px 0;
+}
+
+.trending .coins-wrapper table tr:hover,
+.trending .coins-wrapper table tr:hover td.table-fixed-column,
+.tab-container .tab-content #asset-list table tr:hover,
+.tab-container .tab-content #asset-list table tr:hover td.table-fixed-column{
+    background-color: var(--background-color-secondary);
+}
+
+.trending .coins-wrapper .container .table-fixed-column,
+.trending .nfts-wrapper .container .table-fixed-column{
+    left: -20px;
+}
+
+.table-fixed-column{
+    background-color: var(--background-color-primary);
+    position: sticky;
+    left: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.spinner{
+    display: none;
+    width: 50px;
+    height: 50px;
+    border: 6px solid var(--text-secondary);
+    border-top: 6px solid var(--background-color-secondary);
+    margin: 10px auto 20px;
+    border-radius: 50%;
+    animation: spin 3s linear infinite;
+}
+/* keyframe for the spinner */
+@keyframes spin{ 
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.error-message{
+    display: none;
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ---------------Tabs--------------- */
+.tab-container{
+    margin: 0 40px;
+    background-color: var(--background-color-primary);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.tab-container .tabs{
+    background-color: var(--background-color-secondary);
+    display: inline-flex;
+    gap: 20px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.tab-container .tabs .tab-button{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-container .tabs .tab-button i{
+    font-size: 20px;
+    color: var(--text-secondary);
+    transition: all 0.3 ease;
+}
+
+.tab-container .tabs .tab-button.active,
+.tab-container .tabs .tab-button.active i{
+    color: var(--color-white);
+}
+
+table tr td .rank{
+    padding-left: 10px;
+}
+
+table tr td .name-column{
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 30px;
 }
