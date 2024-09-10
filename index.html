@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto App</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" integrity="sha512-MqL4+Io386IOPMKKyplKII0pVW5e+kb+PI/I3N87G3fHIfrgNNsRpzIXEi+0MQC0sR9xZNqZqCYVcC61fL5+Vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css"
+        integrity="sha512-MqL4+Io386IOPMKKyplKII0pVW5e+kb+PI/I3N87G3fHIfrgNNsRpzIXEi+0MQC0sR9xZNqZqCYVcC61fL5+Vg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body id="dark-theme">
     <div class="main">
+        <!-- ------------Current-Market-Details------------- -->
         <div class="global">
             <p>Coins: <b id="coins-count">14973</b></p>
             <p>Exchanges: <b id="exchanges-count">1164</b></p>
-            <p>Market Cap: <span><b id="marketCap">$2.560T</b></span><span id="marketCapChange">-4.9%</span><i class="ri-arrow-down-s-fill"></i></p>
+            <p>Market Cap: <span><b id="marketCap">$2.560T</b></span><span id="marketCapChange">-4.9%</span><i
+                    class="ri-arrow-down-s-fill"></i></p>
             <p>24H Vol: <b id="volume">$154.342B</b></p>
             <p>Dominance: <b id="dominance">BTC 53.0% - ETH 15.6%</b></p>
         </div>
-
+        <!-- -------------NavBar------------- -->
         <nav>
             <div class="left-section">
                 <a href="#" class="logo">Bitora.</a>
@@ -31,14 +36,152 @@
             <div class="right-section">
                 <form class="search" id="searchForm">
                     <i class="ri-search-line"></i>
-                    <input type="text" id="searchInput" placeholder="Search for an asset..." required autocomplete="off">
+                    <input type="text" id="searchInput" placeholder="Search for an asset..." required
+                        autocomplete="off">
                 </form>
                 <i id="theme-toggle" class="ri-sun-line"></i>
             </div>
         </nav>
-
+        <!-- -------------Trending------------- -->
+        <div class="trending">
+            <div class="coins-wrapper">
+                <div class="header">
+                    <h3>Trending Coins</h3>
+                </div>
+                <div class="container">
+                    <div id="coins-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="table-fixed-column">Coin</th>
+                                    <th>Price</th>
+                                    <th>Market Cap</th>
+                                    <th>Volume</th>
+                                    <th>24h%</th>
+                                </tr>
+                                <tr>
+                                    <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                        <span>(BTC)</span>
+                                    </td>
+                                    <td>$0.000101</td>
+                                    <td>$15,324,456,345</td>
+                                    <td>$342,234,234</td>
+                                    <td class="red">-7.67%</td>
+                                </tr>
+                                <tr>
+                                    <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                        <span>(BTC)</span>
+                                    </td>
+                                    <td>$0.000101</td>
+                                    <td>$15,324,456,345</td>
+                                    <td>$342,234,234</td>
+                                    <td class="red">-7.67%</td>
+                                </tr>
+                                <tr></tr>
+                                <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                    <span>(BTC)</span>
+                                </td>
+                                <td>$0.000101</td>
+                                <td>$15,324,456,345</td>
+                                <td>$342,234,234</td>
+                                <td class="red">-7.67%</td>
+                                </tr>
+                                <tr>
+                                    <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                        <span>(BTC)</span>
+                                    </td>
+                                    <td>$0.000101</td>
+                                    <td>$15,324,456,345</td>
+                                    <td>$342,234,234</td>
+                                    <td class="red">-7.67%</td>
+                                </tr>
+                                <tr>
+                                    <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                        <span>(BTC)</span>
+                                    </td>
+                                    <td>$0.000101</td>
+                                    <td>$15,324,456,345</td>
+                                    <td>$342,234,234</td>
+                                    <td class="red">-7.67%</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="spinner" id="coins-list-spinner"></div>
+                    <div class="error-message" id="coins-list-error">API Limit reached. Please try again later.</div>
+                </div>
+            </div>
+            <div class="nfts-wrapper">
+                <div class="header">
+                    <h3>Trending NFTs</h3>
+                </div>
+                <div class="container">
+                    <div id="nfts-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="table-fixed-column">NFT</th>
+                                    <th>Market</th>
+                                    <th>Price</th>
+                                    <th>24h Vol</th>
+                                    <th>24h%</th>
+                                </tr>
+                                <tr>
+                                    <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                        <span>(BTC)</span>
+                                    </td>
+                                    <td>$0.000101</td>
+                                    <td>$15,324,456,345</td>
+                                    <td>$342,234,234</td>
+                                    <td class="green">7.67%</td>
+                                </tr>
+                                <tr>
+                                    <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                        <span>(BTC)</span>
+                                    </td>
+                                    <td>$0.000101</td>
+                                    <td>$15,324,456,345</td>
+                                    <td>$342,234,234</td>
+                                    <td class="red">7.67%"</td>
+                                </tr>
+                                <tr></tr>
+                                <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                    <span>(BTC)</span>
+                                </td>
+                                <td>$0.000101</td>
+                                <td>$15,324,456,345</td>
+                                <td>$342,234,234</td>
+                                <td class="red">-7.67%</td>
+                                </tr>
+                                <tr>
+                                    <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                        <span>(BTC)</span>
+                                    </td>
+                                    <td>$0.000101</td>
+                                    <td>$15,324,456,345</td>
+                                    <td>$342,234,234</td>
+                                    <td class="red">-7.67%</td>
+                                </tr>
+                                <tr>
+                                    <td class="name-column table-fixed-column"><img src="./assets/bitcoin.png">Bitcoin
+                                        <span>(BTC)</span>
+                                    </td>
+                                    <td>$0.000101</td>
+                                    <td>$15,324,456,345</td>
+                                    <td>$342,234,234</td>
+                                    <td class="red">-7.67%</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="spinner" id="nfts-list-spinner"></div>
+                    <div class="error-message" id="nfts-list-error">API Limit reached. Please try again later.</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="./script.js"></script>
 </body>
+
 </html>
