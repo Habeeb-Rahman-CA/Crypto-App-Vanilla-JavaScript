@@ -170,7 +170,7 @@ nav .right-section .search {
     width: 100%;
 }
 
-nav .right-section .search input{
+nav .right-section .search input {
     padding: 10px 6px;
     background-color: var(--background-color-secondary);
     color: var(--color-white);
@@ -178,12 +178,12 @@ nav .right-section .search input{
 }
 
 nav .right-section .search input::placeholder,
-nav .right-section .search  i{
+nav .right-section .search i {
     color: var(--text-secondary);
 }
 
-nav .right-section > i{
-    padding: 8px ;
+nav .right-section>i {
+    padding: 8px;
     background-color: var(--background-color-secondary);
     color: var(--color-white);
     border-radius: 12px;
@@ -192,22 +192,22 @@ nav .right-section > i{
     transition: all 0.3s ease;
 }
 
-nav .right-section > i.ri-sun-line{
+nav .right-section>i.ri-sun-line {
     transform: rotate(0deg)
 }
 
-nav .right-section > i.ri-moon-line{
+nav .right-section>i.ri-moon-line {
     transform: rotate(360deg);
 }
 
 /* ---------------Trending-Section--------------- */
-.trending{
+.trending {
     margin: 40px;
     display: flex;
     justify-content: space-between;
 }
 
-table tr td img{
+table tr td img {
     width: 32px;
     height: 32px;
     vertical-align: middle;
@@ -216,11 +216,11 @@ table tr td img{
 }
 
 .trending .coins-wrapper,
-.trending .nfts-wrapper{
+.trending .nfts-wrapper {
     width: 49%;
 }
 
-.trending h3{
+.trending h3 {
     color: var(--color-white);
     font-weight: 500;
     width: 100%;
@@ -228,7 +228,7 @@ table tr td img{
 }
 
 .trending .coins-wrapper .container,
-.trending .nfts-wrapper .container{
+.trending .nfts-wrapper .container {
     background-color: var(--background-color-primary);
     padding: 10px 20px;
     border-radius: 12px;
@@ -236,13 +236,13 @@ table tr td img{
 }
 
 .trending table,
-.tab-container .tab-content table{
+.tab-container .tab-content table {
     width: 100%;
     border-spacing: 0px 20px;
 }
 
 .trending table th,
-.tab-container .tab-content table th{
+.tab-container .tab-content table th {
     color: var(--color-white);
     font-weight: 500;
     text-align: left;
@@ -250,48 +250,48 @@ table tr td img{
     padding-bottom: 10px;
 }
 
-.trending thead tr:hover{
+.trending thead tr:hover {
     background-color: transparent !important;
     cursor: unset !important;
 }
 
 .trending .coins-wrapper table tr,
-.tab-container .tab-content #asset-list table tr{
+.tab-container .tab-content #asset-list table tr {
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.trending table tr td{
+.trending table tr td {
     padding: 5px;
 }
 
 .trending table tr td,
-.tab-container .tab-content table tr td{
+.tab-container .tab-content table tr td {
     color: var(--text-secondary);
     font-size: 13px;
 }
 
-table tr td:first-child{
+table tr td:first-child {
     border-radius: 12px 0 0 12px;
 }
 
-table tr td:last-child{
+table tr td:last-child {
     border-radius: 0 12px 12px 0;
 }
 
 .trending .coins-wrapper table tr:hover,
 .trending .coins-wrapper table tr:hover td.table-fixed-column,
 .tab-container .tab-content #asset-list table tr:hover,
-.tab-container .tab-content #asset-list table tr:hover td.table-fixed-column{
+.tab-container .tab-content #asset-list table tr:hover td.table-fixed-column {
     background-color: var(--background-color-secondary);
 }
 
 .trending .coins-wrapper .container .table-fixed-column,
-.trending .nfts-wrapper .container .table-fixed-column{
+.trending .nfts-wrapper .container .table-fixed-column {
     left: -20px;
 }
 
-.table-fixed-column{
+.table-fixed-column {
     background-color: var(--background-color-primary);
     position: sticky;
     left: 0;
@@ -299,7 +299,7 @@ table tr td:last-child{
     transition: all 0.3s ease;
 }
 
-.spinner{
+.spinner {
     display: none;
     width: 50px;
     height: 50px;
@@ -309,17 +309,19 @@ table tr td:last-child{
     border-radius: 50%;
     animation: spin 3s linear infinite;
 }
+
 /* keyframe for the spinner */
-@keyframes spin{ 
-    0%{
+@keyframes spin {
+    0% {
         transform: rotate(0deg);
     }
-    100%{
+
+    100% {
         transform: rotate(360deg);
     }
 }
 
-.error-message{
+.error-message {
     display: none;
     color: red;
     text-align: center;
@@ -327,14 +329,14 @@ table tr td:last-child{
 }
 
 /* ---------------Tabs--------------- */
-.tab-container{
+.tab-container {
     margin: 0 40px;
     background-color: var(--background-color-primary);
     padding: 20px;
     border-radius: 12px;
 }
 
-.tab-container .tabs{
+.tab-container .tabs {
     background-color: var(--background-color-secondary);
     display: inline-flex;
     gap: 20px;
@@ -343,7 +345,7 @@ table tr td:last-child{
     margin-bottom: 30px;
 }
 
-.tab-container .tabs .tab-button{
+.tab-container .tabs .tab-button {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -354,24 +356,79 @@ table tr td:last-child{
     transition: all 0.3s ease;
 }
 
-.tab-container .tabs .tab-button i{
+.tab-container .tabs .tab-button i {
     font-size: 20px;
     color: var(--text-secondary);
     transition: all 0.3 ease;
 }
 
 .tab-container .tabs .tab-button.active,
-.tab-container .tabs .tab-button.active i{
+.tab-container .tabs .tab-button.active i {
     color: var(--color-white);
 }
 
-table tr td .rank{
+table tr td .rank {
     padding-left: 10px;
 }
 
-table tr td .name-column{
+table tr td .name-column {
     max-width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 30px;
+}
+
+/* ---------------Tabs--------------- */
+footer {
+    background-color: var(--background-color-primary);
+    width: 50%;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px 12px 0 0;
+    border: 1px solid var(--border-color);
+    margin: 0 auto;
+}
+
+footer p {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+footer .social-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+footer .social-icon a,
+#scrollTop {
+    background-color: var(--background-color);
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+footer .social-icon a i {
+    font-size: 26px;
+    color: white;
+}
+
+footer .social-icon a:hover,
+#scrollTop:hover {
+    background-color: var(--links-color);
+}
+
+#scrollTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    cursor: pointer;
+    background-color: var(--background-color-secondary);
+    padding: 6px;
+    font-size: 30px;
 }
