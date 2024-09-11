@@ -432,3 +432,21 @@ footer .social-icon a:hover,
     padding: 6px;
     font-size: 30px;
 }
+
+/* ---------------Chart.html--------------- */
+
+.hidden{
+    display: none;
+}
+
+.chart-container{
+    margin: 40px 40px 0;
+    background-color: var(--background-color-primary);
+    border-radius: 12px;
+    height: 100vh;
+}
+
+.chart-container{
+    background-color: var(--background-color);
+    margin-bottom: 20px;
+}

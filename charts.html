@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto App</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css"
+        integrity="sha512-MqL4+Io386IOPMKKyplKII0pVW5e+kb+PI/I3N87G3fHIfrgNNsRpzIXEi+0MQC0sR9xZNqZqCYVcC61fL5+Vg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body id="dark-theme">
+    <div class="main">
+        <!-- ------------Current-Market-Details------------- -->
+        <div class="global">
+            <p>Coins: <b id="coins-count">14973</b></p>
+            <p>Exchanges: <b id="exchanges-count">1164</b></p>
+            <p>Market Cap: <span><b id="marketCap">$2.560T</b></span><span id="marketCapChange">-4.9%</span><i
+                    class="ri-arrow-down-s-fill"></i></p>
+            <p>24H Vol: <b id="volume">$154.342B</b></p>
+            <p>Dominance: <b id="dominance">BTC 53.0% - ETH 15.6%</b></p>
+        </div>
+        <!-- -------------NavBar------------- -->
+        <nav>
+            <div class="left-section">
+                <a href="#" class="logo">Bitora.</a>
+                <div class="nav-links">
+                    <a href="/index.html">Home</a>
+                    <a href="/charts.html" class="active">Chart</a>
+                    <a href="/search.html">Search</a>
+                    <a href="/about.html">About Us</a>
+                </div>
+            </div>
+            <div class="right-section">
+                <form class="search" id="searchForm">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="searchInput" placeholder="Search for an asset..." required
+                        autocomplete="off">
+                </form>
+                <i id="theme-toggle" class="ri-sun-line"></i>
+            </div>
+        </nav>
+        <!-- -------------Chart-Section------------- -->
+        <div class="chart-container">
+            <div class="tradingview-widget-container" id="chart-widget">
+                <div class="tradingview-widget-copyright hidden">
+                    <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                    <span class="white-text">Track all markets on TradingView</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Habeeb Rahman CA, All Rights Reserved.</p>
+        <div class="social-icon">
+            <a href="https://www.instagram.com/hxb.izz/" target="_blank"><i class="ri-instagram-line"></i></a>
+            <a href="https://github.com/Habeeb-Rahman-CA" target="_blank"><i class="ri-github-line"></i></a>
+            <a href="www.linkedin.com/in/habeeb-rahman-ca" target="_blank"><i class="ri-linkedin-fill"></i></a>
+            <a href="https://wa.me/1234567890" target="_blank"><i class="ri-whatsapp-line"></i></a>
+        </div>
+    </footer>
+
+    <button onclick="scrollToTop()" id="scrollTop"><i class="ri-arrow-up-s-line"></i></button>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
