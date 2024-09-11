@@ -250,7 +250,8 @@ table tr td img {
     padding-bottom: 10px;
 }
 
-.trending thead tr:hover {
+.trending thead tr:hover,
+.tab-container thead tr:hover {
     background-color: transparent !important;
     cursor: unset !important;
 }
@@ -261,7 +262,8 @@ table tr td img {
     transition: all 0.3s ease;
 }
 
-.trending table tr td {
+.trending table tr td,
+.tab-container table tr td {
     padding: 5px;
 }
 
@@ -367,7 +369,7 @@ table tr td:last-child {
     color: var(--color-white);
 }
 
-table tr td .rank {
+table tr td.rank {
     padding-left: 10px;
 }
 
@@ -378,7 +380,7 @@ table tr td .name-column {
     padding-right: 30px;
 }
 
-/* ---------------Tabs--------------- */
+/* ---------------Footer--------------- */
 footer {
     background-color: var(--background-color-primary);
     width: 50%;
