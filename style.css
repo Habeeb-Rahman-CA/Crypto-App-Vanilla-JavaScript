@@ -236,13 +236,15 @@ table tr td img {
 }
 
 .trending table,
-.tab-container .tab-content table {
+.tab-container .tab-content table,
+.search-container .item table {
     width: 100%;
     border-spacing: 0px 20px;
 }
 
 .trending table th,
-.tab-container .tab-content table th {
+.tab-container .tab-content table th,
+.search-container .item table th {
     color: var(--color-white);
     font-weight: 500;
     text-align: left;
@@ -257,18 +259,21 @@ table tr td img {
 }
 
 .trending .coins-wrapper table tr,
-.tab-container .tab-content #asset-list table tr {
+.tab-container .tab-content #asset-list table tr,
+.search-container .item #coins-list table tr {
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .trending table tr td,
-.tab-container table tr td {
+.tab-container table tr td,
+.search-container table tr td{
     padding: 5px;
 }
 
 .trending table tr td,
-.tab-container .tab-content table tr td {
+.tab-container .tab-content table tr td,
+.search-container .item table tr td {
     color: var(--text-secondary);
     font-size: 13px;
 }
@@ -284,7 +289,8 @@ table tr td:last-child {
 .trending .coins-wrapper table tr:hover,
 .trending .coins-wrapper table tr:hover td.table-fixed-column,
 .tab-container .tab-content #asset-list table tr:hover,
-.tab-container .tab-content #asset-list table tr:hover td.table-fixed-column {
+.tab-container .tab-content #asset-list table tr:hover td.table-fixed-column,
+.search-container .item #coins-list table tr:hover{
     background-color: var(--background-color-secondary);
 }
 
@@ -441,7 +447,14 @@ footer .social-icon a:hover,
     display: none;
 }
 
-.chart-container{
+main > h3{
+    color: var(--color-white);
+    margin: 40px 40px 20px;
+    font-weight: 500;
+}
+
+.chart-container,
+.search-container {
     margin: 40px 40px 0;
     background-color: var(--background-color-primary);
     border-radius: 12px;
@@ -451,4 +464,25 @@ footer .social-icon a:hover,
 .chart-container{
     background-color: var(--background-color);
     margin-bottom: 20px;
+}
+
+/* ---------------Search.html--------------- */
+
+.search-container{
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    padding: 20px 20px 10px;
+    gap: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.search-container .item{
+    width: 38%;
+}
+
+.search-container .item h4{
+    color: var(--color-white);
+    font-weight: 500;
+    margin: 0 0 20px;
 }
