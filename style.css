@@ -531,3 +531,88 @@ main > h3{
 .about-container .info button:hover{
     background-color: var(--links-color);
 }
+
+/* ---------------coin.html--------------- */
+
+.coin-container{
+    margin: 40px;
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.coin-container .left-section{
+    width: 30%;
+}
+
+.coin-container .left-section .ticker{
+    background-color: var(--background-color-primary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.coin-container .tradingview-widget-container{
+    padding: 10px;
+}
+
+.coin-container .left-section .coin-info,
+.coin-container .right-section .status .container{
+    background-color: var(--background-color-primary);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.coin-container .left-section > h3,
+.coin-container .right-section .status > h3{
+    color: var(--color-white);
+    font-weight: 500;
+    margin: 36px 0 20px;
+}
+
+.coin-container .left-section .coin-info .logo{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.coin-container .left-section .coin-info .logo img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.coin-container .left-section .coin-info .logo h4{
+    color: var(--color-white);
+}
+
+.coin-container .left-section .coin-info h4 span{
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.coin-container .left-section .coin-info .logo p{
+    background-color: var(--background-color-secondary);
+    color: var(--color-white);
+    font-size: 10px;
+    border-radius: 12px;
+    padding: 2px 8px;
+}
+
+.coin-container .left-section .coin-info .status,
+.coin-container .right-section .status{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.coin-container .left-section .coin-info .status .item,
+.coin-container .right-section .status .container .item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 12px;
+    margin-top: 8px;
+}
