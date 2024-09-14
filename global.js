@@ -77,4 +77,11 @@ const displayGlobalData = (globalData) =>{
     } else {
         marketCapChangeElement.textContent = "N/A"
     }
+
+    volume.textContent = globalData.total_volume?.usd ? `$${(globalData.total_volume.usd / 1e9).toFixed(3)}B` : 'N/A'
+
+    const btcDominance = globalData.market_cap_percentage?.btc ? `${globalData.market_cap_percentage.btc.toFixed(1)}%` : 'N/A'
+    const ethDominance = globalData.market_cap_percentage?.eth ? `${globalData.market_cap_percentage.eth.toFixed(1)}%` : 'N/A'
+
+    dominance.textContent = `BTC ${btcDominance} - ETH ${ethDominance}`
 }
