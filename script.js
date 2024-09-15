@@ -95,14 +95,15 @@ async function fetchAndDisplay(url, idsToToggle, displayFunction, tabName = null
     }
 }
 
+//display trending data(coins and nfts)
 const displayTrend = (data) => {
-    displayTrendCoins(data.coins.slice(0, 5))
+    displayTrendCoins(data.coins.slice(0, 5)) //only top 5
     displayTrendNfts(data.nfts.slice(0, 5))
 }
-
+//display trending coins
 const displayTrendCoins = (coins) =>{
     const coinsTable = document.getElementById('coins-list')
-    coinsTable.innerHTML = ''
+    coinsTable.innerHTML = '' //clear the current data
     const table = createTable(['Coin', 'Price', 'Market Cap', 'Volume', '24h%'])
     
 }
