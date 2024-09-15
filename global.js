@@ -106,3 +106,24 @@ const toggleSpinner = (listId, spinnerId, show) => {
         listElement.style.display = show ? 'none' : 'block'
     }
 }
+
+//create a HTML table with header
+const createTable = (headers, fixedIndex = 0) =>{
+    const table = document.createElement('table')
+    const thead = document.createElement('thead')
+    table.appendChild(thead)
+    
+    const headerRow = document.createElement('tr') //create a row for the header
+    
+    headers.forEach((header, index) => { //add each header to the row
+        const th = document.createElement('th')
+        th.textContent = header
+        if (index === fixedIndex){
+            th.classList.add('table-fixed-column')
+        }
+        headerRow.appendChild(th) //add header cell to the row
+    });
+    thead.appendChild(headerRow) // add row to the table
+
+    return table
+}
