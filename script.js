@@ -16,8 +16,8 @@ const openTab = (event, tabName) => {
     tabButtons.forEach(button => button.classList.remove("active"))
 
     //display the content of selected tab and add 'active' class
-    document.getElementById(tabName).style.display = "block" 
-    event.currentTarget.classList.add("active") 
+    document.getElementById(tabName).style.display = "block"
+    event.currentTarget.classList.add("active")
 
     //check the data loaded or not, if not fetch it.
     if (!tabDataLoaded[tabName]) {
@@ -101,9 +101,45 @@ const displayTrend = (data) => {
     displayTrendNfts(data.nfts.slice(0, 5))
 }
 //display trending coins
-const displayTrendCoins = (coins) =>{
+const displayTrendCoins = (coins) => {
     const coinsTable = document.getElementById('coins-list')
     coinsTable.innerHTML = '' //clear the current data
     const table = createTable(['Coin', 'Price', 'Market Cap', 'Volume', '24h%'])
-    
+
+    coins.forEach(coin => {
+        const coinData = coin.item
+        const row = document.createElement('tr')
+        //insert the html into the table row
+        row.innerHTML = `
+        <td class="name-column table-fixed-column"><img src="${coinData.thumb}"> ${coinData.name} <span>(${coinData.symbol.toUpperCase()})</span></td>
+        <td>${parseFloat(coinData.price_btc).toFixed(6)}</td>
+        <td>${coinData.data.market_cap}</td>
+        <td>${coinData.data.total_volume}</td>
+        <td class="${coinData.data.price_change_percentage_24h.usd >= 0 ? 'green' : 'red'}">${coinData.data.price_change_percentage_24h.usd.toFixed(2)}%</td>
+        `
+        row.onClick = () => window.location.href = `./coin.html?coin=${coinData.id}` //when click the row it will open the coin.html
+        table.appendChild(row)
+    });
+    coinsTable.appendChild(table)
+}
+
+//display nfts coins
+const displayTrendNfts = (nfts) => {
+    const nftsTable = document.getElementById('nfts-list')
+    nftsTable.innerHTML = '' //clear the current data
+    const table = createTable(['NFT', 'Market', 'Price', '24h Vol', '24h%'])
+
+    nfts.forEach(nft => {
+        const row = document.createElement('tr')
+        //insert the html into the table row
+        row.innerHTML = `
+        <td class="name-column table-fixed-column"><img src="${nft.thumb}"> ${nft.name} <span>(${nft.symbol.toUpperCase()})</span></td>
+        <td>${nft.native_currency_symbol.toUpperCase()}</td>
+        <td>${nft.data.floor_price}</td>
+        <td>${nft.data.h24_volume}</td>
+        <td class="${parseFloat(nft.data.floor_price_in_usd_24h_percentage_change) >= 0 ? 'green' : 'red'}">${nft.data.floor_price_in_usd_24h_percentage_change.toFixed(2)}%</td>
+        `
+        table.appendChild(row)
+    });
+    nftsTable.appendChild(table)
 }
