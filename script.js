@@ -102,8 +102,8 @@ const displayTrend = (data) => {
 }
 //display trending coins
 const displayTrendCoins = (coins) => {
-    const coinsTable = document.getElementById('coins-list')
-    coinsTable.innerHTML = '' //clear the current data
+    const coinsList = document.getElementById('coins-list')
+    coinsList.innerHTML = '' //clear the current data
     const table = createTable(['Coin', 'Price', 'Market Cap', 'Volume', '24h%'])
 
     coins.forEach(coin => {
@@ -123,10 +123,10 @@ const displayTrendCoins = (coins) => {
     coinsTable.appendChild(table)
 }
 
-//display nfts coins
+//display trending nfts
 const displayTrendNfts = (nfts) => {
-    const nftsTable = document.getElementById('nfts-list')
-    nftsTable.innerHTML = '' //clear the current data
+    const nftsList = document.getElementById('nfts-list')
+    nftsList.innerHTML = '' //clear the current data
     const table = createTable(['NFT', 'Market', 'Price', '24h Vol', '24h%'])
 
     nfts.forEach(nft => {
@@ -142,4 +142,41 @@ const displayTrendNfts = (nfts) => {
         table.appendChild(row)
     });
     nftsTable.appendChild(table)
+}
+
+//display assets
+const displayAssets = (data) => {
+    const cryptoList = document.getElementById('asset-list')
+    cryptoList.innerHTML = ''
+    const table = createTable(['Rank', 'Coin', 'Price', '24h Price', '24h Price %', 'Total Vol', 'Market Cap', 'Last 7 Days'], 1)
+
+    const sparklineData = []
+
+    data.forEach(asset => {
+        const row = document.createElement('tr')
+        //insert the html into the table row
+        row.innerHTML = `
+                        <td class="rank">${asset.market_cap_rank}</td>
+                        <td class="name-column table-fixed-column"><img src="${asset.image}">${asset.name}<span>(${asset.symbol.toUpper()})</span></td>
+                        <td>$${asset.current_price.toFixed(2)}</td>
+                        <td class="${asset.price_change_percentage_24h >= 0 ? "green" : "red"}">$${asset.price_change_24h.toFixed(2)}</td>
+                        <td class="${asset.price_change_percentage_24h >= 0 ? "green" : "red"}">${asset.price_change_percentage_24h.toFixed(2)}%</td>
+                        <td>$${asset.total_volume.toLocaleString()}</td>
+                        <td>$${asset.market_cap.toLocaleString()}</td>
+                        <td><canvas id="chart-${asset.id}" width="100" height="50"></canvas></td>
+        `
+        table.appendChild(row)
+        sparklineData.push({
+            id:asset.id,
+            sparkline: asset.sparkline_in_7d.price,
+            color: asset.sparkline_in_7d.price[0] <= asset.sparkline_in_7d.price[asset.sparkline_in_7d.price.length - 1] ? 'green' : 'red'
+        })
+        row.onClick = () => window.location.href = `./coin.html?coin=${coinData.id}`
+    });
+    cryptoList.appendChild(table)
+
+    sparklineData.forEach(({id, sparkline, color}) =>{
+        const ctx = document.createElement(`chart-${id}`).getContext('2d')
+        new Chart()
+    })
 }
