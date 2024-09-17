@@ -179,7 +179,7 @@ const displayAssets = (data) => {
 
     //settig up the sparkline chart
     sparklineData.forEach(({id, sparkline, color}) =>{
-        const ctx = document.createElement(`chart-${id}`).getContext('2d')
+        const ctx = document.getElementById(`chart-${id}`).getContext('2d')
         new Chart(ctx, {
             type: 'line',
             data: {
