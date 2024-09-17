@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //fetch the data of trending and asset list
 async function fetchData() {
     await Promise.all([
-        fetchAndDisplay('https://api.coingecko.com/api/v3/search/trending', ['coins-list', 'nfts-list'], displayTrending, null, 'Trending_Data'),
+        fetchAndDisplay('https://api.coingecko.com/api/v3/search/trending', ['coins-list', 'nfts-list'], displayTrend, null, 'Trending_Data'),
         fetchAndDisplay('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=true', ['asset-list'], displayAssets, null, 'Crypto_Data')
     ])
 }
@@ -75,6 +75,7 @@ async function fetchAndDisplay(url, idsToToggle, displayFunction, tabName = null
                 const response = await fetch(url)
                 if (!response.ok) throw new Error('API limit reached') //throw an error if reponse is not 'ok'
                 const data = await response.json()
+                console.log('API Response:', data)
                 //hide the spinner and show the data
                 idsToToggle.forEach(id => toggleSpinner(id, `${id}-spinner`, false))
                 displayFunction(data)
@@ -115,7 +116,7 @@ const displayTrendCoins = (coins) => {
         <td>${parseFloat(coinData.price_btc).toFixed(6)}</td>
         <td>${coinData.data.market_cap}</td>
         <td>${coinData.data.total_volume}</td>
-        <td class="${coinData.data.price_change_percentage_24h.usd >= 0 ? 'green' : 'red'}">${coinData.data.price_change_percentage_24h.usd.toFixed(2)}%</td>
+        <td class="${coinData.data.price_change_percentage_24h .usd >= 0 ? 'green' : 'red'}">${coinData.data.price_change_percentage_24h.usd.toFixed(2)}%</td>
         `
         row.onClick = () => window.location.href = `./coin.html?coin=${coinData.id}` //when click the row it will open the coin.html
         table.appendChild(row)
@@ -137,7 +138,7 @@ const displayTrendNfts = (nfts) => {
         <td>${nft.native_currency_symbol.toUpperCase()}</td>
         <td>${nft.data.floor_price}</td>
         <td>${nft.data.h24_volume}</td>
-        <td class="${parseFloat(nft.data.floor_price_in_usd_24h_percentage_change) >= 0 ? 'green' : 'red'}">${nft.data.floor_price_in_usd_24h_percentage_change.toFixed(2)}%</td>
+        <td class="${parseFloat(nft.data.floor_price_in_usd_24h_percentage_change) >= 0 ? 'green' : 'red'}">${parseFloat(nft.data.floor_price_in_usd_24h_percentage_change).toFixed(2)}%</td>
         `
         table.appendChild(row)
     });
@@ -166,6 +167,7 @@ const displayAssets = (data) => {
                         <td><canvas id="chart-${asset.id}" width="100" height="50"></canvas></td>
         `
         table.appendChild(row)
+        //pushing the sparkline data into the row
         sparklineData.push({
             id:asset.id,
             sparkline: asset.sparkline_in_7d.price,
@@ -175,8 +177,40 @@ const displayAssets = (data) => {
     });
     cryptoList.appendChild(table)
 
+    //settig up the sparkline chart
     sparklineData.forEach(({id, sparkline, color}) =>{
         const ctx = document.createElement(`chart-${id}`).getContext('2d')
-        new Chart()
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: sparkline.map((_, index) => index),
+                datasets: [{
+                    data:sparkline,
+                    borderColor: color,
+                    fill: false,
+                    pointRadius: 0,
+                    borderWidth: 1 
+                }] 
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        display: false
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: false
+                    }
+                }
+            }
+        })
     })
 }
