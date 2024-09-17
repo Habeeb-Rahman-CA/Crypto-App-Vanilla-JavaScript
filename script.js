@@ -66,32 +66,29 @@ async function fetchAndDisplay(url, idsToToggle, displayFunction, tabName = null
     if (localData) {
         idsToToggle.forEach(id => toggleSpinner(id, `${id}-spinner`, false))
         displayFunction(localData)
-
-        //mark tab is loaded
+    }
+    try { //fetch API if the data is not at local storage
+        const response = await fetch(url)
+        if (!response.ok) throw new Error('API limit reached') //throw an error if reponse is not 'ok'
+        const data = await response.json()
+        console.log('API Response:', data)
+        //hide the spinner and show the data
+        idsToToggle.forEach(id => toggleSpinner(id, `${id}-spinner`, false))
+        displayFunction(data)
+        setLocalStorageData(localstorageKey, data) //and save to the local storage
         if (tabName) {
             tabDataLoaded[tabName] = true
-        } else {
-            try { //fetch API if the data is not at local storage
-                const response = await fetch(url)
-                if (!response.ok) throw new Error('API limit reached') //throw an error if reponse is not 'ok'
-                const data = await response.json()
-                console.log('API Response:', data)
-                //hide the spinner and show the data
-                idsToToggle.forEach(id => toggleSpinner(id, `${id}-spinner`, false))
-                displayFunction(data)
-                setLocalStorageData(localstorageKey, data) //and save to the local storage
-                if (tabName) {
-                    tabDataLoaded[tabName] = true
-                }
-            } catch (error) { //if there is an error, hide the spinner and show the error message
-                idsToToggle.forEach(id => {
-                    toggleSpinner(id, `${id}-spinner`, false)
-                    document.getElementById(`${id}-error`).style.display = 'block'
-                })
-                if (tabName) {
-                    tabDataLoaded[tabName] = false //mark the data is not loaded
-                }
-            }
+        }
+    } catch (error) { //if there is an error, hide the spinner and show the error message
+        if(localData){
+            displayFunction(localData) //use local data on error
+        }
+        idsToToggle.forEach(id => {
+            toggleSpinner(id, `${id}-spinner`, false)
+            document.getElementById(`${id}-error`).style.display = 'block'
+        })
+        if (tabName) {
+            tabDataLoaded[tabName] = false //mark the data is not loaded
         }
     }
 }
@@ -116,12 +113,12 @@ const displayTrendCoins = (coins) => {
         <td>${parseFloat(coinData.price_btc).toFixed(6)}</td>
         <td>${coinData.data.market_cap}</td>
         <td>${coinData.data.total_volume}</td>
-        <td class="${coinData.data.price_change_percentage_24h .usd >= 0 ? 'green' : 'red'}">${coinData.data.price_change_percentage_24h.usd.toFixed(2)}%</td>
+        <td class="${coinData.data.price_change_percentage_24h.usd >= 0 ? 'green' : 'red'}">${coinData.data.price_change_percentage_24h.usd.toFixed(2)}%</td>
         `
         row.onClick = () => window.location.href = `./coin.html?coin=${coinData.id}` //when click the row it will open the coin.html
         table.appendChild(row)
     });
-    coinsTable.appendChild(table)
+    coinsList.appendChild(table)
 }
 
 //display trending nfts
@@ -142,7 +139,7 @@ const displayTrendNfts = (nfts) => {
         `
         table.appendChild(row)
     });
-    nftsTable.appendChild(table)
+    nftsList.appendChild(table)
 }
 
 //display assets
@@ -158,7 +155,7 @@ const displayAssets = (data) => {
         //insert the html into the table row
         row.innerHTML = `
                         <td class="rank">${asset.market_cap_rank}</td>
-                        <td class="name-column table-fixed-column"><img src="${asset.image}">${asset.name}<span>(${asset.symbol.toUpper()})</span></td>
+                        <td class="name-column table-fixed-column"><img src="${asset.image}">${asset.name}<span>(${asset.symbol.toUpperCase()})</span></td>
                         <td>$${asset.current_price.toFixed(2)}</td>
                         <td class="${asset.price_change_percentage_24h >= 0 ? "green" : "red"}">$${asset.price_change_24h.toFixed(2)}</td>
                         <td class="${asset.price_change_percentage_24h >= 0 ? "green" : "red"}">${asset.price_change_percentage_24h.toFixed(2)}%</td>
@@ -169,7 +166,7 @@ const displayAssets = (data) => {
         table.appendChild(row)
         //pushing the sparkline data into the row
         sparklineData.push({
-            id:asset.id,
+            id: asset.id,
             sparkline: asset.sparkline_in_7d.price,
             color: asset.sparkline_in_7d.price[0] <= asset.sparkline_in_7d.price[asset.sparkline_in_7d.price.length - 1] ? 'green' : 'red'
         })
@@ -178,19 +175,19 @@ const displayAssets = (data) => {
     cryptoList.appendChild(table)
 
     //settig up the sparkline chart
-    sparklineData.forEach(({id, sparkline, color}) =>{
+    sparklineData.forEach(({ id, sparkline, color }) => {
         const ctx = document.getElementById(`chart-${id}`).getContext('2d')
         new Chart(ctx, {
             type: 'line',
             data: {
                 labels: sparkline.map((_, index) => index),
                 datasets: [{
-                    data:sparkline,
+                    data: sparkline,
                     borderColor: color,
                     fill: false,
                     pointRadius: 0,
-                    borderWidth: 1 
-                }] 
+                    borderWidth: 1
+                }]
             },
             options: {
                 responsive: false,
