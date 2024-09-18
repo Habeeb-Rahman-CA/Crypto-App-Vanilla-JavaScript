@@ -115,7 +115,7 @@ const displayTrendCoins = (coins) => {
         <td>${coinData.data.total_volume}</td>
         <td class="${coinData.data.price_change_percentage_24h.usd >= 0 ? 'green' : 'red'}">${coinData.data.price_change_percentage_24h.usd.toFixed(2)}%</td>
         `
-        row.onClick = () => window.location.href = `./coin.html?coin=${coinData.id}` //when click the row it will open the coin.html
+        row.onclick = () => window.location.href = `./coin.html?coin=${coinData.id}` //when click the row it will open the coin.html
         table.appendChild(row)
     });
     coinsList.appendChild(table)
@@ -170,7 +170,7 @@ const displayAssets = (data) => {
             sparkline: asset.sparkline_in_7d.price,
             color: asset.sparkline_in_7d.price[0] <= asset.sparkline_in_7d.price[asset.sparkline_in_7d.price.length - 1] ? 'green' : 'red'
         })
-        row.onClick = () => window.location.href = `./coin.html?coin=${coinData.id}`
+        row.onclick = () => window.location.href = `./coin.html?coin=${asset.id}`
     });
     cryptoList.appendChild(table)
 
@@ -210,4 +210,30 @@ const displayAssets = (data) => {
             }
         })
     })
+}
+
+//displaying the exchanges
+const displayExchanges = (data) =>{
+    const exchangeList = document.getElementById('exchange-list')
+    exchangeList.innerHTML = '' //clear the current data
+    const table = createTable(['Rank', 'Exchange', 'Trust Score', '24hr Trade', '24hr Trade (Normal)', 'Country', 'Website', 'Year'])
+
+    data = data.slice(0, 20) //only show the first 20
+
+    data.forEach(exchange => {
+        const row = document.createElement('tr')
+        //insert the html into the table row
+        row.innerHTML = `
+                    <td class="rank">${exchange.trust_score_rank}</td>
+                    <td class="name-column table-fixed-column"><img src="${exchange.image}">${exchange.name}</td>
+                    <td>${exchange.trust_score}</td>
+                    <td>$${exchange.trade_volume_24h_btc.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3} )} (BTC)</td>
+                    <td>$${exchange.trade_volume_24h_btc_normalized.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3} )} (BTC)</td>
+                    <td class="name-column">${exchange.country || 'N/A'}</td>
+                    <td class="name-column">${exchange.url}</td>
+                    <td>${exchange.year_established || 'N/A'}</td>
+        `
+        table.appendChild(row)
+    });
+    exchangeList.appendChild(table)
 }

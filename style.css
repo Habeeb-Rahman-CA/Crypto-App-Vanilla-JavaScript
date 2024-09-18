@@ -207,6 +207,14 @@ nav .right-section>i.ri-moon-line {
     justify-content: space-between;
 }
 
+table{
+    overflow: scroll;
+}
+
+table tr td{
+    white-space: nowrap;
+}
+
 table tr td img {
     width: 32px;
     height: 32px;
@@ -250,6 +258,7 @@ table tr td img {
     text-align: left;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
+    padding-right: 15px;
 }
 
 .trending thead tr:hover,
@@ -705,3 +714,4 @@ main > h3{
 .coin-desc p a{
     color: var(--links-color);
 }
+
