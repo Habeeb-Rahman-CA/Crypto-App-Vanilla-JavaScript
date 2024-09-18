@@ -261,3 +261,23 @@ const displayCategories = (data) => {
     categoryList.appendChild(table)
 }
 
+//display the company tab
+const displayCompanies = (data) => {
+    const companyList = document.getElementById("company-list")
+    companyList.innerHTML = '' //clear the current data
+    const table = createTable(['Company', 'Total BTC', 'Entry Value', 'Total Current Value', 'Total %'])
+
+    data.companies.forEach(company => {
+        const row = document.createElement('tr')
+        //insert the html into the table row
+        row.innerHTML = `
+                       <td class="name-column table-fixed-column">${company.name}</td>
+                            <td>${company.total_holdings}</td>
+                            <td>$${company.total_entry_value_usd}</td>
+                            <td>$${company.total_current_value_usd}</td>
+                            <td class="${company.percentage_of_total_supply >= 0 ? 'green' : 'red'}">${company.percentage_of_total_supply}%</td>
+        `
+        table.appendChild(row)
+    });
+    companyList.appendChild(table)
+}
