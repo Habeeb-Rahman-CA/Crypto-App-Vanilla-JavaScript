@@ -7,6 +7,38 @@ const dominance = document.getElementById('dominance')
 
 //when the HTML content fully loaded then fetch the data
 document.addEventListener("DOMContentLoaded", () =>{
+
+    const themeToggle = document.getElementById('theme-toggle')
+    const body = document.body
+
+    const savedTheme = localStorage.getItem('theme')
+    if(savedTheme){
+        body.id = savedTheme
+        updateIcon(savedTheme)
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (body.id === 'light-theme') {
+            body.id = 'dark-theme'
+            localStorage.setItem('theme', 'dark-theme')
+            updateIcon('dark-theme')
+        } else {
+            body.id = 'light-theme'
+            localStorage.setItem('theme', 'light-theme')
+            updateIcon('light-theme')
+        }
+    })
+
+    function updateIcon(currentTheme){
+        if(currentTheme === 'light-theme'){
+            themeToggle.classList.remove('ri-moon-line')
+            themeToggle.classList.add('ri-sun-line')
+        } else {
+            themeToggle.classList.add('ri-moon-line')
+            themeToggle.classList.remove('ri-sun-line')
+        }
+    }
+
     fetchGlobal();
 })
 
