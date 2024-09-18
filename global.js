@@ -8,15 +8,16 @@ const dominance = document.getElementById('dominance')
 //when the HTML content fully loaded then fetch the data
 document.addEventListener("DOMContentLoaded", () =>{
 
+    //adding theme toggle
     const themeToggle = document.getElementById('theme-toggle')
     const body = document.body
 
-    const savedTheme = localStorage.getItem('theme')
+    const savedTheme = localStorage.getItem('theme') //get the saved theme from the local storage
     if(savedTheme){
         body.id = savedTheme
-        updateIcon(savedTheme)
+        updateIcon(savedTheme) //update icon based on the saved theme
     }
-
+    //check current theme and switch to its opposite theme
     themeToggle.addEventListener('click', () => {
         if (body.id === 'light-theme') {
             body.id = 'dark-theme'
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             updateIcon('light-theme')
         }
     })
-
+    //update icon based on the theme
     function updateIcon(currentTheme){
         if(currentTheme === 'light-theme'){
             themeToggle.classList.remove('ri-moon-line')
