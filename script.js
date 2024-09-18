@@ -80,7 +80,7 @@ async function fetchAndDisplay(url, idsToToggle, displayFunction, tabName = null
             tabDataLoaded[tabName] = true
         }
     } catch (error) { //if there is an error, hide the spinner and show the error message
-        if(localData){
+        if (localData) {
             displayFunction(localData) //use local data on error
         }
         idsToToggle.forEach(id => {
@@ -212,8 +212,8 @@ const displayAssets = (data) => {
     })
 }
 
-//displaying the exchanges
-const displayExchanges = (data) =>{
+//displaying the exchange tab
+const displayExchanges = (data) => {
     const exchangeList = document.getElementById('exchange-list')
     exchangeList.innerHTML = '' //clear the current data
     const table = createTable(['Rank', 'Exchange', 'Trust Score', '24hr Trade', '24hr Trade (Normal)', 'Country', 'Website', 'Year'])
@@ -227,13 +227,37 @@ const displayExchanges = (data) =>{
                     <td class="rank">${exchange.trust_score_rank}</td>
                     <td class="name-column table-fixed-column"><img src="${exchange.image}">${exchange.name}</td>
                     <td>${exchange.trust_score}</td>
-                    <td>$${exchange.trade_volume_24h_btc.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3} )} (BTC)</td>
-                    <td>$${exchange.trade_volume_24h_btc_normalized.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3} )} (BTC)</td>
+                    <td>$${exchange.trade_volume_24h_btc.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 })} (BTC)</td> 
+                    <td>$${exchange.trade_volume_24h_btc_normalized.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 })} (BTC)</td>
                     <td class="name-column">${exchange.country || 'N/A'}</td>
                     <td class="name-column">${exchange.url}</td>
                     <td>${exchange.year_established || 'N/A'}</td>
-        `
+        ` //to local string is add comma after 3 digit and place only 3 decimals
         table.appendChild(row)
     });
     exchangeList.appendChild(table)
 }
+
+//displaying the category tab
+const displayCategories = (data) => {
+    const categoryList = document.getElementById('category-list')
+    categoryList.innerHTML = '' //clear the current data
+    const table = createTable(['Top Coins', 'Category', 'Market Cap', '24hr Market Cap', '24hr Volume'])
+
+    data = data.slice(0, 20) //only show the first 20
+
+    data.forEach(category => {
+        const row = document.createElement('tr')
+        //insert the html into the table row
+        row.innerHTML = `
+                        <td>${category.top_3_coins.map(coin => `<img src="${coin}">`).join('')}</td>
+                        <td class="name-column table-fixed-column">${category.name}</td>
+                        <td>$${category.market_cap ? category.market_cap.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : 'N/A'}</td>
+                        <td class="${category.market_cap_change_24h >= 0 ? 'green' : 'red'}">${category.market_cap_change_24h ? category.market_cap_change_24h.toFixed(3) : '0'}%</td>
+                        <td>$${category.volume_24h ? category.volume_24h.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : 'N/A'}</td>
+        `
+        table.appendChild(row)
+    });
+    categoryList.appendChild(table)
+}
+
