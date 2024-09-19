@@ -67,10 +67,12 @@ const fetchSearchResult = (param, idsToToggle) => {
                 nfts = nfts.slice(0, minCount)
             }
 
+            //display th result
             coinsResult(coins)
             exchangesResult(exchanges)
             nftsResult(nfts)
-
+            
+            //if nothing is found display the no result message
             if(coins.length === 0){
                 coinsList.innerHTML = '<p style="color: red; text-align: center;">No result found for coins.</p>'
             }
@@ -81,6 +83,7 @@ const fetchSearchResult = (param, idsToToggle) => {
                 nftsList.innerHTML = '<p style="color: red; text-align: center;">No result found for nfts.</p>'
             }
         })
+        //if catch any error show the error message
         .catch(error =>{
             idsToToggle.forEach(id => {
                 toggleSpinner(id, `${id}-spinner`, false)
@@ -90,11 +93,13 @@ const fetchSearchResult = (param, idsToToggle) => {
         })
 }
 
+//list the coins
 const coinsResult = (coins) =>{
-    coinsList.innerHTML = ''
+    coinsList.innerHTML = '' //clear the current coin list
 
-    const table = createTable(['Rank', 'Coin'])
+    const table = createTable(['Rank', 'Coin']) //create the table with 2 column
 
+    //create row for each coin
     coins.forEach(coin => {
         const row = document.createElement('tr')
         row.innerHTML = `
@@ -109,6 +114,7 @@ const coinsResult = (coins) =>{
     coinsList.appendChild(table)
 }
 
+//list the exchange list
 const exchangesResult = (exchanges) =>{
     exchangesList.innerHTML = ''
 
@@ -125,6 +131,7 @@ const exchangesResult = (exchanges) =>{
     exchangesList.appendChild(table)
 }
 
+//list the nfts list
 const nftsResult = (nfts) =>{
     nftsList.innerHTML = ''
 
