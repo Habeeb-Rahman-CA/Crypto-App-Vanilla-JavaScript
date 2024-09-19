@@ -430,7 +430,7 @@ footer .social-icon a,
 
 footer .social-icon a i {
     font-size: 26px;
-    color: white;
+    color: var(--color-white);
 }
 
 footer .social-icon a:hover,

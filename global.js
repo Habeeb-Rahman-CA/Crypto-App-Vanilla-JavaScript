@@ -6,14 +6,14 @@ const volume = document.getElementById('volume')
 const dominance = document.getElementById('dominance')
 
 //when the HTML content fully loaded then fetch the data
-document.addEventListener("DOMContentLoaded", () =>{
+document.addEventListener("DOMContentLoaded", () => {
 
     //adding theme toggle
     const themeToggle = document.getElementById('theme-toggle')
     const body = document.body
 
     const savedTheme = localStorage.getItem('theme') //get the saved theme from the local storage
-    if(savedTheme){
+    if (savedTheme) {
         body.id = savedTheme
         updateIcon(savedTheme) //update icon based on the saved theme
     }
@@ -28,10 +28,14 @@ document.addEventListener("DOMContentLoaded", () =>{
             localStorage.setItem('theme', 'light-theme')
             updateIcon('light-theme')
         }
+        if (typeof initializeWidget === 'function') {
+            initializeWidget()
+        }
     })
+    
     //update icon based on the theme
-    function updateIcon(currentTheme){
-        if(currentTheme === 'light-theme'){
+    function updateIcon(currentTheme) {
+        if (currentTheme === 'light-theme') {
             themeToggle.classList.remove('ri-moon-line')
             themeToggle.classList.add('ri-sun-line')
         } else {
@@ -40,19 +44,20 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
     }
 
+
     fetchGlobal();
 })
 
 //Read the data from localstorage
-const getLocalStorageData = (key) =>{
+const getLocalStorageData = (key) => {
     const storedData = localStorage.getItem(key)
-    if(!storedData) return null //null if there is no data
+    if (!storedData) return null //null if there is no data
 
     const parsedData = JSON.parse(storedData)
     const currentTime = Date.now()
 
     //if the data is older than 5min the data remove and fetch again
-    if(currentTime - parsedData.timestamp > 300000){
+    if (currentTime - parsedData.timestamp > 300000) {
         localStorage.removeItem(key)
         return null
     }
@@ -60,7 +65,7 @@ const getLocalStorageData = (key) =>{
 }
 
 //store the data in local storage with a timestamp
-const setLocalStorageData = (key, data) =>{
+const setLocalStorageData = (key, data) => {
     const storedData = {
         timestamp: Date.now(),
         data: data
@@ -69,15 +74,15 @@ const setLocalStorageData = (key, data) =>{
 }
 
 //fetch the global cryptocurrency data from "CoinGecko API"
-const fetchGlobal = () =>{
+const fetchGlobal = () => {
     const localStorageKey = 'Global_Data' //define the key
     const localData = getLocalStorageData(localStorageKey)
 
     //if data is found display it, if not fetch new data
-    if (localData){
+    if (localData) {
         displayGlobalData(localData)
     } else {
-        const options = {method: 'GET', headers: {accept: 'application/json'}};
+        const options = { method: 'GET', headers: { accept: 'application/json' } };
 
         fetch('https://api.coingecko.com/api/v3/global', options)
             .then(response => response.json())
@@ -86,7 +91,7 @@ const fetchGlobal = () =>{
                 displayGlobalData(globalData)
                 setLocalStorageData(localStorageKey, globalData) //and save to local storage
             })
-            .catch(error =>{ //if any error show not available
+            .catch(error => { //if any error show not available
                 coinsCount.textContent = 'N/A'
                 exchangeCount.textContent = 'N/A'
                 marketCap.textContent = 'N/A'
@@ -99,7 +104,7 @@ const fetchGlobal = () =>{
 }
 
 //display the data in the HTML element
-const displayGlobalData = (globalData) =>{
+const displayGlobalData = (globalData) => {
     console.log(globalData)
 
     //coin and exchange count
@@ -110,7 +115,7 @@ const displayGlobalData = (globalData) =>{
     marketCap.textContent = globalData.total_market_cap?.usd ? `$${(globalData.total_market_cap.usd / 1e12).toFixed(3)}T` : "N/A"
     const marketCapChange = globalData.market_cap_change_percentage_24h_usd
 
-    if(marketCapChange !== undefined){
+    if (marketCapChange !== undefined) {
         const changeText = `${marketCapChange.toFixed(1)}%` // "toFixed" used to fix decimal place here it shows only 1 decimal place
         marketCapChangeElement.innerHTML = `${changeText} <i class="${marketCapChange < 0 ? 'red' : 'green'} ri-arrow-${marketCapChange < 0 ? 'down' : 'up'}-s-fill"></i>`
         marketCapChangeElement.style.color = marketCapChange < 0 ? 'red' : 'green'
@@ -141,17 +146,17 @@ const toggleSpinner = (listId, spinnerId, show) => {
 }
 
 //create a HTML table with header
-const createTable = (headers, fixedIndex = 0) =>{
+const createTable = (headers, fixedIndex = 0) => {
     const table = document.createElement('table')
     const thead = document.createElement('thead')
     table.appendChild(thead)
-    
+
     const headerRow = document.createElement('tr') //create a row for the header
-    
+
     headers.forEach((header, index) => { //add each header to the row
         const th = document.createElement('th')
         th.textContent = header
-        if (index === fixedIndex){
+        if (index === fixedIndex) {
             th.classList.add('table-fixed-column')
         }
         headerRow.appendChild(th) //add header cell to the row
@@ -160,3 +165,28 @@ const createTable = (headers, fixedIndex = 0) =>{
 
     return table
 }
+
+//creating the trading view widget
+const createWidget = (containerId, widgetConfig, widgetSrc) =>{
+    const container = document.getElementById(containerId)
+
+    container.innerHTML = ''
+
+    const widgetDiv = document.createElement('div')
+    widgetDiv.classList.add('tradingview-widget-container__widget')
+    container.appendChild(widgetDiv)
+
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = widgetSrc
+    script.async = true
+    script.innerHTML = JSON.stringify(widgetConfig)
+    container.appendChild(script)
+
+    setTimeout(() => {
+        const copyright = document.querySelector('.tradingview-widget-copyright')
+        if (copyright){
+            copyright.classList.remove('hidden')
+        }
+    }, 5000)
+} 
