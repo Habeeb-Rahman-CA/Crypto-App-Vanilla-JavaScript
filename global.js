@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             initializeWidget()
         }
     })
-    
+
     //update icon based on the theme
     function updateIcon(currentTheme) {
         if (currentTheme === 'light-theme') {
@@ -43,7 +43,16 @@ document.addEventListener("DOMContentLoaded", () => {
             themeToggle.classList.remove('ri-sun-line')
         }
     }
+    //handling form submission
+    const form = document.getElementById('searchForm')
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
 
+        const query = document.getElementById('searchInput').value.trim()
+        if (!query) return //if input is empty do nothing
+
+        window.location.href = `./search.html?query=${query}`
+    })
 
     fetchGlobal();
 })
@@ -167,7 +176,7 @@ const createTable = (headers, fixedIndex = 0) => {
 }
 
 //creating the trading view widget
-const createWidget = (containerId, widgetConfig, widgetSrc) =>{
+const createWidget = (containerId, widgetConfig, widgetSrc) => {
     const container = document.getElementById(containerId)
 
     container.innerHTML = ''
@@ -185,7 +194,7 @@ const createWidget = (containerId, widgetConfig, widgetSrc) =>{
 
     setTimeout(() => {
         const copyright = document.querySelector('.tradingview-widget-copyright')
-        if (copyright){
+        if (copyright) {
             copyright.classList.remove('hidden')
         }
     }, 5000)

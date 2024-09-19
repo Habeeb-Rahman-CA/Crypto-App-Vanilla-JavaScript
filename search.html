@@ -17,8 +17,7 @@
         <div class="global">
             <p>Coins: <b id="coins-count">14973</b></p>
             <p>Exchanges: <b id="exchanges-count">1164</b></p>
-            <p>Market Cap: <span><b id="marketCap">$2.560T</b></span><span id="marketCapChange">-4.9%</span><i
-                    class="ri-arrow-down-s-fill"></i></p>
+            <p>Market Cap: <span><b id="marketCap">$2.560T</b></span> <span id="marketCapChange">-4.9%</span>
             <p>24H Vol: <b id="volume">$154.342B</b></p>
             <p>Dominance: <b id="dominance">BTC 53.0% - ETH 15.6%</b></p>
         </div>
@@ -47,85 +46,19 @@
         <div class="search-container">
             <div class="item">
                 <h4>Asset Result</h4>
-                <div id="coins-list">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="table-fixed-columnRank"></th>
-                                <th>Coin</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td>1</td>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Bitcoin <span>(BTC)</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Bitcoin <span>(BTC)</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Bitcoin <span>(BTC)</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <div id="coins-list"></div>
                 <div class="spinner" id="coins-list-spinner"></div>
                 <div class="error-message" id="coins-list-error">API Limit reached. Please try again later.</div>
             </div>
             <div class="item">
                 <h4>Exchange Result</h4>
-                <div id="exchanges-list">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="table-fixed-column">Exchange</th>
-                                <th>Market</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Bybit</td>
-                            <td>spot</td>
-                        </tr>
-                        <tr>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Bybit</td>
-                            <td>spot</td>
-                        </tr>
-                        <tr>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Bybit</td>
-                            <td>spot</td>
-                        </tr>
-                    </table>
-                </div>
+                <div id="exchanges-list"></div>
                 <div class="spinner" id="exchanges-list-spinner"></div>
                 <div class="error-message" id="exchanges-list-error">API Limit reached. Please try again later.</div>
             </div>
             <div class="item">
                 <h4>NFT Results</h4>
-                <div id="nfts-list">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="table-fixed-column">NFT</th>
-                                <th>Symbol</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Hitobito Reverse</td>
-                            <td class="name-column">HITOBITO REVERSE</td>
-                        </tr>
-                        <tr>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Hitobito Reverse</td>
-                            <td class="name-column">HITOBITO REVERSE</td>
-                        </tr>
-                        <tr>
-                            <td class="name-column"><img src="./assets/bitcoin.png" alt="">Hitobito Reverse</td>
-                            <td class="name-column">HITOBITO REVERSE</td>
-                        </tr>
-                    </table>
-                </div>
+                <div id="nfts-list"></div>
                 <div class="spinner" id="nfts-list-spinner"></div>
                 <div class="error-message" id="nfts-list-error">API Limit reached. Please try again later.</div>
             </div>
@@ -142,8 +75,8 @@
     </footer>
 
     <button onclick="scrollToTop()" id="scrollTop"><i class="ri-arrow-up-s-line"></i></button>
-
-    <script src="./script.js"></script>
+    <script src="./search.js"></script>
+    <script src="./global.js"></script>
 </body>
 
 </html>
