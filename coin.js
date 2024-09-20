@@ -162,32 +162,34 @@ const displayCoinInfo = (coin) => {
                     </div>
                 </div>
             </div>
+
             <div class="status">
                 <h3>Market</h3>
                 <div class="container">
                     <div class="item">
-                        <p class="str">${coin.ticker[0].market.name.replace('Exchange', '')}</p>
+                        <p class="str">${coin.tickers[0].market.name.replace('Exchange', '')}</p>
                         <div class="links">
-                            <a href="${coin.ticker[0].trade_url}">Trade</a>
-                            <p style="background-color: ${coin.ticker[0].trust_score};">Trust: ${coin.ticker[0].trust_score}</p>
+                            <a href="${coin.tickers[0].trade_url}">Trade</a>
+                            <p style="background-color: ${coin.tickers[0].trust_score};">Trust: ${coin.tickers[0].trust_score}</p>
                         </div>
                     </div>
                     <div class="item">
-                        <p class="str">${coin.ticker[1].market.name.replace('Exchange', '')}</p>
+                        <p class="str">${coin.tickers[1].market.name.replace('Exchange', '')}</p>
                         <div class="links">
-                            <a href="${coin.ticker[1].trade_url}">Trade</a>
-                            <p style="background-color: ${coin.ticker[1].trust_score};">Trust: ${coin.ticker[1].trust_score}</p>
+                            <a href="${coin.tickers[1].trade_url}">Trade</a>
+                            <p style="background-color: ${coin.tickers[1].trust_score};">Trust: ${coin.tickers[1].trust_score}</p>
                         </div>
                     </div>
                     <div class="item">
-                        <p class="str">${coin.ticker[2].market.name.replace('Exchange', '')}</p>
+                        <p class="str">${coin.tickers[2].market.name.replace('Exchange', '')}</p>
                         <div class="links">
-                            <a href="${coin.ticker[2].trade_url}">Trade</a>
-                            <p style="background-color: ${coin.ticker[2].trust_score};">Trust: ${coin.ticker[2].trust_score}</p>
+                            <a href="${coin.tickers[2].trade_url}">Trade</a>
+                            <p style="background-color: ${coin.tickers[2].trust_score};">Trust: ${coin.tickers[2].trust_score}</p>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="status">
                 <h3>Info</h3>
                 <div class="container">
