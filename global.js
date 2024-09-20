@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
             initializeWidget()
         }
     })
-
     //update icon based on the theme
     function updateIcon(currentTheme) {
         if (currentTheme === 'light-theme') {

@@ -107,35 +107,35 @@ const displayCoinInfo = (coin) => {
             <div class="status">
                 <div class="item">
                     <p class="str">Market Cap</p>
-                    <p class="num">$${coin.market_data.market_cap.usd != null ? coin.market_data.market_cap.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                    <p class="num">$${coin.market_data.market_cap.usd != null ? coin.market_data.market_cap.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                 </div>
                 <div class="item">
                     <p class="str">Current Price</p>
-                    <p class="num">$${coin.market_data.current_price.usd != null ? coin.market_data.current_price.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                    <p class="num">$${coin.market_data.current_price.usd != null ? coin.market_data.current_price.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                 </div>
                 <div class="item">
                     <p class="str">All Time High</p>
-                    <p class="num">$${coin.market_data.ath.usd != null ? coin.market_data.ath.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                    <p class="num">$${coin.market_data.ath.usd != null ? coin.market_data.ath.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                 </div>
                 <div class="item">
                     <p class="str">All Time Low</p>
-                    <p class="num">$${coin.market_data.atl.usd != null ? coin.market_data.atl.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                    <p class="num">$${coin.market_data.atl.usd != null ? coin.market_data.atl.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                 </div>
                 <div class="item">
                     <p class="str">Total Volume</p>
-                    <p class="num">$${coin.market_data.total_volume.usd != null ? coin.market_data.total_volume.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                    <p class="num">$${coin.market_data.total_volume.usd != null ? coin.market_data.total_volume.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                 </div>
                 <div class="item">
                     <p class="str">Total Supply</p>
-                    <p class="num">$${coin.market_data.total_supply != null ? coin.market_data.total_supply.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                    <p class="num">$${coin.market_data.total_supply != null ? coin.market_data.total_supply.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                 </div>
                 <div class="item">
                     <p class="str">Max Supply</p>
-                    <p class="num">$${coin.market_data.max_supply != null ? coin.market_data.max_supply.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                    <p class="num">$${coin.market_data.max_supply != null ? coin.market_data.max_supply.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                 </div>
                 <div class="item">
                     <p class="str">Circulating Supply</p>
-                    <p class="num">$${coin.market_data.circulating_supply != null ? coin.market_data.circulating_supply.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                    <p class="num">$${coin.market_data.circulating_supply != null ? coin.market_data.circulating_supply.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                 </div>
             </div>
     `
@@ -146,19 +146,19 @@ const displayCoinInfo = (coin) => {
                 <div class="container">
                     <div class="item">
                         <p class="str">ATH</p>
-                        <p class="num">$${coin.market_data.ath.usd != null ? coin.market_data.ath.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                        <p class="num">$${coin.market_data.ath.usd != null ? coin.market_data.ath.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                     </div>
                     <div class="item">
                         <p class="str">ATL</p>
-                        <p class="num">$${coin.market_data.atl.usd != null ? coin.market_data.atl.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                        <p class="num">$${coin.market_data.atl.usd != null ? coin.market_data.atl.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                     </div>
                     <div class="item">
                         <p class="str">24h High</p>
-                        <p class="num">$${coin.market_data.high_24h.usd != null ? coin.market_data.high_24h.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                        <p class="num">$${coin.market_data.high_24h.usd != null ? coin.market_data.high_24h.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                     </div>
                     <div class="item">
                         <p class="str">24h Low</p>
-                        <p class="num">$${coin.market_data.low_24h.usd != null ? coin.market_data.low_24h.usd.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : "N/A"}</p>
+                        <p class="num">$${coin.market_data.low_24h.usd != null ? coin.market_data.low_24h.usd.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : "N/A"}</p>
                     </div>
                 </div>
             </div>
@@ -213,7 +213,7 @@ const displayCoinInfo = (coin) => {
     coinDesc.innerHTML = coin.description.en || '<p class="red">Asset description not available!</p>'
 }
 
-const getThemeConfig = () =>{
+const getThemeConfig = () => {
     const root = getComputedStyle(document.documentElement)
     const isDarkTheme = localStorage.getItem('theme') === 'light-theme' ? false : true
 

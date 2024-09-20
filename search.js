@@ -2,11 +2,11 @@ const coinsList = document.getElementById('coins-list')
 const exchangesList = document.getElementById('exchanges-list')
 const nftsList = document.getElementById('nfts-list')
 
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
     //get the url parameter after the search
     const params = new URLSearchParams(window.location.search)
     const query = params.get('query')
-    if(query){ //fetch the search result and pass the query and list
+    if (query) { //fetch the search result and pass the query and list
         fetchSearchResult(query, [coinsList, exchangesList, nftsList])
     } else { //if no query then show the message.
         const searchHeading = document.getElementById('searchHeading')
@@ -37,17 +37,17 @@ const fetchSearchResult = (param, idsToToggle) => {
 
     //fetch the result of search api
     const url = `https://api.coingecko.com/api/v3/search?query=${param}`
-    const options = {method: 'GET', headers: {accept: 'application/json'}}
+    const options = { method: 'GET', headers: { accept: 'application/json' } }
 
     fetch(url, options)
-        .then(response =>{
+        .then(response => {
             if (!response.ok) {
                 throw new Error('Network is not responding' + response.statusText)
             }
             idsToToggle.forEach(id => toggleSpinner(id, `${id}-spinner`, false))
             return response.json()
         })
-        .then(data =>{ //filter result with only image are displayed
+        .then(data => { //filter result with only image are displayed
             let coins = (data.coins || []).filter(coin => coin.thumb !== "missing_thumb.png")
             let exchanges = (data.exchanges || []).filter(exchange => exchange.thumb !== "missing_thumb.png")
             let nfts = (data.nfts || []).filter(nft => nft.thumb !== "missing_thumb.png")
@@ -61,7 +61,7 @@ const fetchSearchResult = (param, idsToToggle) => {
             let minCount = Math.min(coinsCount, exchangesCount, nftsCount)
 
             //show equal numbers from each category
-            if(coinsCount > 0 && exchangesCount > 0 && nftsCount > 0){
+            if (coinsCount > 0 && exchangesCount > 0 && nftsCount > 0) {
                 coins = coins.slice(0, minCount)
                 exchanges = exchanges.slice(0, minCount)
                 nfts = nfts.slice(0, minCount)
@@ -71,20 +71,20 @@ const fetchSearchResult = (param, idsToToggle) => {
             coinsResult(coins)
             exchangesResult(exchanges)
             nftsResult(nfts)
-            
+
             //if nothing is found display the no result message
-            if(coins.length === 0){
+            if (coins.length === 0) {
                 coinsList.innerHTML = '<p style="color: red; text-align: center;">No result found for coins.</p>'
             }
-            if(exchanges.length === 0){
+            if (exchanges.length === 0) {
                 exchangesList.innerHTML = '<p style="color: red; text-align: center;">No result found for exchanges.</p>'
             }
-            if(nfts.length === 0){
+            if (nfts.length === 0) {
                 nftsList.innerHTML = '<p style="color: red; text-align: center;">No result found for nfts.</p>'
             }
         })
         //if catch any error show the error message
-        .catch(error =>{
+        .catch(error => {
             idsToToggle.forEach(id => {
                 toggleSpinner(id, `${id}-spinner`, false)
                 document.getElementById(`${id}-error`).style.display = 'block'
@@ -94,7 +94,7 @@ const fetchSearchResult = (param, idsToToggle) => {
 }
 
 //list the coins
-const coinsResult = (coins) =>{
+const coinsResult = (coins) => {
     coinsList.innerHTML = '' //clear the current coin list
 
     const table = createTable(['Rank', 'Coin']) //create the table with 2 column
@@ -107,7 +107,7 @@ const coinsResult = (coins) =>{
                 <td class="name-column"><img src="${coin.thumb}" alt="">${coin.name} <span>(${coin.symbol.toUpperCase()})</span></td>
         `
         table.appendChild(row)
-        row.onclick = () =>{
+        row.onclick = () => {
             window.location.href = `./coin.html?coin=${coin.id}`
         }
     })
@@ -115,7 +115,7 @@ const coinsResult = (coins) =>{
 }
 
 //list the exchange list
-const exchangesResult = (exchanges) =>{
+const exchangesResult = (exchanges) => {
     exchangesList.innerHTML = ''
 
     const table = createTable(['Exchange', 'Market'])
@@ -132,7 +132,7 @@ const exchangesResult = (exchanges) =>{
 }
 
 //list the nfts list
-const nftsResult = (nfts) =>{
+const nftsResult = (nfts) => {
     nftsList.innerHTML = ''
 
     const table = createTable(['NFT', 'Symbol'])

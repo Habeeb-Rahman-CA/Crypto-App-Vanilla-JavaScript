@@ -252,9 +252,9 @@ const displayCategories = (data) => {
         row.innerHTML = `
                         <td>${category.top_3_coins.map(coin => `<img src="${coin}">`).join('')}</td>
                         <td class="name-column table-fixed-column">${category.name}</td>
-                        <td>$${category.market_cap ? category.market_cap.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : 'N/A'}</td>
+                        <td>$${category.market_cap ? category.market_cap.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : 'N/A'}</td>
                         <td class="${category.market_cap_change_24h >= 0 ? 'green' : 'red'}">${category.market_cap_change_24h ? category.market_cap_change_24h.toFixed(3) : '0'}%</td>
-                        <td>$${category.volume_24h ? category.volume_24h.toLocaleString(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}) : 'N/A'}</td>
+                        <td>$${category.volume_24h ? category.volume_24h.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : 'N/A'}</td>
         `
         table.appendChild(row)
     });
