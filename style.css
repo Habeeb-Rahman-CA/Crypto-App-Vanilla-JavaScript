@@ -137,10 +137,6 @@ nav .left-section .logo {
     font-size: 26px;
 }
 
-nav .left-section .logo span{
-    color: #e5a206;
-}
-
 nav .left-section .nav-links {
     display: flex;
     gap: 10px;
